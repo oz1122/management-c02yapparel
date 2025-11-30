@@ -24,7 +24,7 @@ async function loadNavbar() {
     const userId = auth.user.id;
 
     // ============================
-    // AMBIL DATA PROFIL DARI TABEL PROFILES
+    // AMBIL DATA PROFIL
     // ============================
     const { data: profile } = await supabase
         .from("profiles")
@@ -32,70 +32,63 @@ async function loadNavbar() {
         .eq("id", userId)
         .single();
 
-    // ============================
-    // TAMPILKAN NAMA USER
-    // ============================
+    // SET NAMA
     const nameElement = document.getElementById("profileName");
     if (nameElement) {
         nameElement.textContent = profile?.full_name || auth.user.email;
     }
 
-    // ============================
-    // FOTO PROFIL SUPABASE STORAGE
-    // ============================
+    // SET FOTO PROFIL
     const imgElement = document.getElementById("profileImg");
-    let finalImage = "assets/img/default.png"; // default
+    let finalImage = "assets/img/default.png";
 
     if (profile?.profile_image) {
-        const PROJECT_REF = "diyxtkreoplqmzkhzgci";  
-        const BUCKET = "profile_image";              
+        const PROJECT_REF = "diyxtkreoplqmzkhzgci";
+        const BUCKET = "profile_image";
 
         finalImage = `https://${PROJECT_REF}.supabase.co/storage/v1/object/public/${BUCKET}/${profile.profile_image}`;
     }
 
-    if (imgElement) {
-        imgElement.src = finalImage;
-    }
+    if (imgElement) imgElement.src = finalImage;
 
     // ============================
-    // AUTO SET PAGE TITLE
+    // AUTO SET PAGE TITLE (FIX)
     // ============================
-    const pageTitleMap = {
-        "dashboard.html": "Dashboard",
-        "pesanan.html": "Data Pesanan",
-        "tambah_pesanan.html": "Tambah Pesanan",
-        "view_pesanan.html": "Detail Pesanan",
-        "transaksi.html": "Transaksi",
-        "view_transaksi.html": "Detail Transaksi",
-        "keuangan.html": "Laporan Keuangan",
-        "pengaturan.html": "Pengaturan"
-    };
-
-    const currentPage = window.location.pathname.split("/").pop();
     const titleElement = document.getElementById("pageTitle");
-
     if (titleElement) {
-        titleElement.textContent = pageTitleMap[currentPage] || "Untitled Page";
+        titleElement.textContent = document.title; // <-- AMBIL LANGSUNG DARI <title>
     }
 
     // ============================
-    // AKTIFKAN MENU SESUAI HALAMAN
+    // ACTIVE MENU
     // ============================
+    const path = window.location.pathname;
+
     const menuMap = {
-        "dashboard.html": "menu-dashboard",
-        "pesanan.html": "menu-pesanan",
-        "tambah_pesanan.html": "menu-pesanan",
-        "view_pesanan.html": "menu-pesanan",
-        "transaksi.html": "menu-transaksi",
-        "view_transaksi.html": "menu-transaksi",
-        "keuangan.html": "menu-keuangan",
-        "pengaturan.html": "menu-pengaturan",
+        "/dashboard": "menu-dashboard",
+        "/dashboard.html": "menu-dashboard",
+
+        "/pesanan": "menu-pesanan",
+        "/pesanan.html": "menu-pesanan",
+        "/tambah_pesanan": "menu-pesanan",
+        "/view_pesanan": "menu-pesanan",
+
+        "/transaksi": "menu-transaksi",
+        "/view_transaksi": "menu-transaksi",
+
+        "/keuangan": "menu-keuangan",
+        "/keuangan.html": "menu-keuangan",
+
+        "/pengaturan": "menu-pengaturan",
+        "/pengaturan.html": "menu-pengaturan",
     };
 
-    if (menuMap[currentPage]) {
-        const activeEl = document.getElementById(menuMap[currentPage]);
-        if (activeEl) activeEl.classList.add("active");
-    }
+    Object.keys(menuMap).forEach(route => {
+        if (path.includes(route)) {
+            const activeEl = document.getElementById(menuMap[route]);
+            if (activeEl) activeEl.classList.add("active");
+        }
+    });
 
     // ============================
     // LOGOUT
