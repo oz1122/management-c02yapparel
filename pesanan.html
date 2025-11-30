@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Pesanan C02Y Apparel</title>
+
+    <link rel="stylesheet" href="assets/css/pesanan.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Supabase -->
+    <script type="module" src="assets/js/supabase.js"></script>
+
+    <!-- Navbar Loader -->
+    <script type="module" src="assets/js/navbar.js"></script>
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<div class="content">
+
+    <div class="header-box">
+        <div>
+            <h2>Customer List</h2>
+            <p id="totalPesanan">Total 0 pesanan</p>
+        </div>
+
+        <div class="tools">
+
+            <!-- SEARCH -->
+            <div class="search-wrapper">
+                <input type="text" placeholder="Search.." class="search-input" id="searchInput" autocomplete="off">
+                <div class="search-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- FILTER STATUS -->
+            <select id="filterStatus" class="btn-filter">
+                <option value="">Semua Status</option>
+                <option value="Belum Bayar">Belum Bayar</option>
+                <option value="DP">DP</option>
+                <option value="Belum Lunas">Belum Lunas</option>
+                <option value="Lunas">Lunas</option>
+            </select>
+
+            <button class="btn-new" onclick="window.location.href='tambah_pesanan.html'">+ Pesanan Baru</button>
+        </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Pelanggan</th>
+                    <th>Jumlah Pesanan</th>
+                    <th>Tanggal Pemesanan</th>
+                    <th>Bahan</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pagination-box">
+        <div class="page-info" id="pageInfo">Page 1 of 1</div>
+        <div class="pagination-controls" id="paginationControls"></div>
+    </div>
+
+</div>
+
+<!-- SCRIPT PESANAN -->
+<script type="module" src="assets/js/pesanan.js"></script>
+
+</body>
+</html>

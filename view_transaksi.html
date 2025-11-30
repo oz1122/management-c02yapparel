@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Transaksi</title>
+    <link rel="stylesheet" href="assets/css/view_transaksi.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Supabase client (module) -->
+    <script type="module" src="assets/js/supabase.js"></script>
+    <!-- navbar (module that injects #navbar) -->
+    <script type="module" src="assets/js/navbar.js" defer></script>
+
+    <!-- transaksi logic (Supabase) -->
+    <script type="module" src="assets/js/view_transaksi.js" defer></script>
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<div class="content">
+
+    <h2>Invoice & Detail Transaksi</h2>
+
+    <!-- ======================= INVOICE ======================= -->
+    <div class="invoice-box">
+
+        <h3>Informasi Pesanan</h3>
+
+        <table class="inv-table" id="invTable">
+            <!-- We'll populate rows via JS (keamanan: sanitize) -->
+            <tr>
+                <td><b>Nama Pelanggan</b></td>
+                <td id="inv_nama">-</td>
+            </tr>
+            <tr>
+                <td><b>No Telepon</b></td>
+                <td id="inv_telepon">-</td>
+            </tr>
+            <tr>
+                <td><b>Email</b></td>
+                <td id="inv_email">-</td>
+            </tr>
+            <tr>
+                <td><b>Alamat</b></td>
+                <td id="inv_alamat">-</td>
+            </tr>
+            <tr>
+                <td><b>Jumlah Pemesanan</b></td>
+                <td id="inv_jumlah">- pcs</td>
+            </tr>
+
+            <tr><td colspan="2"><hr></td></tr>
+
+            <tr>
+                <td><b>Paket</b></td>
+                <td id="inv_paket">-</td>
+            </tr>
+
+            <tr>
+                <td><b>Kerah</b></td>
+                <td id="inv_kerah">-</td>
+            </tr>
+
+            <tr>
+                <td><b>Bahan</b></td>
+                <td id="inv_bahan">-</td>
+            </tr>
+
+            <!-- jenis lengan summary -->
+            <tr>
+                <td><b>Jenis Lengan</b></td>
+                <td id="inv_lengan">-</td>
+            </tr>
+
+            <tr><td colspan="2"><hr></td></tr>
+
+            <tr>
+                <td><b>Total Harga</b></td>
+                <td id="inv_total"><b>Rp -</b></td>
+            </tr>
+            <tr>
+                <td><b>Total Pembayaran</b></td>
+                <td id="inv_total_bayar" style="color:green;"><b>Rp -</b></td>
+            </tr>
+            <tr>
+                <td><b>Sisa</b></td>
+                <td id="inv_sisa" style="color:red;"><b>Rp -</b></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ======================= RIWAYAT PEMBAYARAN ======================= -->
+    <h3>Riwayat Pembayaran</h3>
+
+    <table class="payment-table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Tanggal</th>
+                <th>Jumlah</th>
+                <th>Keterangan</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+
+        <tbody id="paymentsBody">
+            <!-- diisi JS -->
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

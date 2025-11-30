@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laporan Keuangan</title>
+    <link rel="stylesheet" href="assets/css/keuangan.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Supabase client (harus ada dan export `supabase`) -->
+    <script type="module" src="assets/js/supabase.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Main logic -->
+    <script type="module" src="assets/js/keuangan.js" defer></script>
+</head>
+
+<body>
+
+<div id="navbar"></div>
+<script type="module" src="assets/js/navbar.js"></script>
+
+<div class="content">
+    <div class="page-header">
+
+<div class="search-filter-container">
+    <h2>Laporan Keuangan</h2>
+
+    <!-- SEARCH -->
+    <form id="searchForm" class="search-input-wrapper" onsubmit="return false;">
+        <input type="hidden" id="filter_bulan" name="bulan">
+        <input type="hidden" id="filter_tahun" name="tahun">
+
+        <input type="text" id="keyword" name="keyword" placeholder="Search...">
+
+        <button id="btnSearch" class="search-icon-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+        </button>
+    </form>
+
+    <button id="toggleFilter" class="btn-filter-toggle">Filter</button>
+
+    <div id="filterDropdown" class="filter-box hidden">
+        <form id="filterForm" class="filter-form" onsubmit="return false;">
+            <input type="hidden" id="keyword_hidden">
+
+            <select id="bulanSelect" name="bulan" class="select-input"></select>
+
+            <select id="tahunSelect" name="tahun" class="select-input"></select>
+
+            <button id="applyFilter" class="btn-filter-apply">Terapkan Filter</button>
+        </form>
+    </div>
+
+    <a id="exportBtn" href="#" class="btn-export">Export Excel</a>
+</div>
+
+<!-- ================== SUMMARY ================== -->
+<div class="summary-box">
+
+    <div class="card pemasukan">
+        <h3>Pemasukan</h3>
+        <p id="totalMasuk">Rp 0</p>
+    </div>
+
+    <div class="card pengeluaran">
+        <h3>Pengeluaran</h3>
+        <p id="totalKeluar">Rp 0</p>
+    </div>
+
+    <div class="card keuntungan">
+        <h3>Keuntungan</h3>
+        <p id="totalKeuntungan">Rp 0</p>
+    </div>
+
+</div>
+
+</div>
+
+<div class="chart-container">
+    <h3>Grafik Keuangan</h3>
+    <canvas id="grafikKeuangan"
+    data-masuk="[]"
+    data-keluar="[]"
+    data-bulan='["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]'>
+</canvas>
+
+</div>
+
+<!-- ================== TABEL PEMASUKAN ================== -->
+<div class="pemasukan-box">
+    <h3>Log Pemasukan (<span id="nBulan">-</span> <span id="nTahun">-</span>)</h3>
+
+    <table class="table" id="tblPemasukan">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Tanggal</th>
+                <th>Jumlah</th>
+                <th>Keterangan</th>
+            </tr>
+        </thead>
+
+        <tbody id="bodyPemasukan">
+        </tbody>
+    </table>
+</div>
+
+<!-- ================== TABEL PENGELUARAN ================== -->
+<div class="pengeluaran-box">
+    <div class="pengeluaran-header">
+        <h3>Log Pengeluaran (<span id="nBulan2">-</span> <span id="nTahun2">-</span>)</h3>
+        <button class="btn-tambah" id="btnTambahPengeluaran">+ Input Pengeluaran</button>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Tanggal</th>
+                <th>Jumlah</th>
+                <th>Keterangan</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+
+        <tbody id="bodyPengeluaran"></tbody>
+    </table>
+</div>
+
+</div>
+
+<!-- MODAL / SWEETALERT handled in JS -->
+<script src="assets/js/grafik_keuangan.js"></script>
+
+</body>
+</html>

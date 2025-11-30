@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Edit Pesanan - C02Y Apparel</title>
+
+    <link rel="stylesheet" href="assets/css/view_pesanan.css">
+
+    <!-- Supabase client -->
+    <script type="module" src="assets/js/supabase.js"></script>
+    <script type="module" src="assets/js/navbar.js"></script>
+
+    <!-- WAJIB: SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<div id="navbar"></div>
+
+<form id="formPesanan" style="display:none;"></form>
+
+<div class="content">
+<div class="page-container">
+
+<!-- HEADER -->
+<div class="header-box">
+    <div class="title-area">
+        <img src="/c02yapparel/asset/ic-pesanan-baru.png" class="title-icon">
+        <h2 id="pageTitle">Edit Pesanan</h2>
+    </div>
+
+    <div class="header-actions">
+        <button class="btn-cancel" id="btnCancel">Cancel</button>
+        <button class="btn-save" id="btnSubmit"><span class="icon-check"></span>Update</button>
+    </div>
+</div>
+
+<!-- BAGIAN KIRI -->
+<div class="card-info">
+    <h3>Informasi Pelanggan</h3>
+
+    <div class="form-grid">
+        <div class="form-group">
+            <label class="required">Nama</label>
+            <input type="text" id="i_nama">
+        </div>
+
+        <div class="form-group">
+            <label class="required">No Telepon</label>
+            <input type="text" id="i_telepon">
+        </div>
+
+        <div class="form-group">
+            <label class="required">Jumlah Pemesanan</label>
+            <input type="number" min="1" id="i_jumlah">
+        </div>
+
+        <div class="form-group">
+            <label>Harga Satuan</label>
+            <input type="text" id="i_harga" readonly>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="i_email">
+        </div>
+
+        <div class="form-group">
+            <label>Alamat</label>
+            <input type="text" id="i_alamat">
+        </div>
+
+        <div class="form-group">
+            <label class="required">Status Pembayaran</label>
+            <select id="i_status">
+                <option>Belum Bayar</option>
+                <option>DP</option>
+                <option>Belum Lunas</option>
+                <option>Lunas</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Total</label>
+            <input type="text" id="i_total" readonly>
+        </div>
+    </div>
+
+    <!-- INFORMASI PRODUK -->
+    <div class="card-produk">
+        <h3>Informasi Produk</h3>
+
+        <div class="form-produk">
+
+            <div class="form-group full">
+                <label class="required">Nama Produk</label>
+                <input type="text" id="i_nama_produk">
+            </div>
+
+            <div class="form-group full">
+                <label>Deskripsi Produk</label>
+                <textarea id="i_deskripsi"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="required">Pilih Paket</label>
+                <div class="paket-row">
+                    <button type="button" class="paket-btn" data-paket="A" data-price="135000">A</button>
+                    <button type="button" class="paket-btn" data-paket="B" data-price="120000">B</button>
+                    <button type="button" class="paket-btn" data-paket="C" data-price="100000">C</button>
+                    <button type="button" class="paket-btn custom" data-paket="Custom" data-price="0">Custom</button>
+                </div>
+            </div>
+
+            <div class="form-group kerah-row">
+                <label class="required">Kerah yang digunakan:</label>
+
+                <div class="kerah-select-wrapper">
+                    <select id="i_kerah"></select>
+
+                    <div class="rib-container" style="margin-left:12px;">
+                        <input type="checkbox" id="i_rib" class="rib-checkbox">
+                        <label for="i_rib" class="rib-label">RIB <span>(+10.000)</span></label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- DETAIL PRODUK -->
+    <div class="detail-produk">
+        <h3>Detail Produk</h3>
+
+        <table class="detail-table">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Punggung</th>
+                    <th>Nomor</th>
+                    <th>Ukuran</th>
+                    <th>Jenis Lengan</th>
+                </tr>
+            </thead>
+
+            <tbody id="detailItemsWrapper"></tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<!-- BAGIAN KANAN -->
+<div class="right-side">
+
+    <div class="upload-container">
+        <h3 class="upload-title">Upload Img</h3>
+
+        <div class="upload-main">
+            <img src="/c02yapparel/asset/preview.png" class="preview-image" id="preview">
+        </div>
+
+        <div class="thumbnail-list" id="thumbList"></div>
+    </div>
+
+    <div class="kategori-box">
+        <h3>Kategori</h3>
+
+        <label class="label-info required">Tentukan Kategori Produk:</label>
+        <select class="input-kategori" id="i_kategori">
+            <option>Jersey Futsal</option>
+        </select>
+
+        <label class="label-info required">Bahan Yang Digunakan:</label>
+        <select class="input-kategori" id="i_bahan">
+            <option>Spandex</option>
+        </select>
+
+        <label class="label-info required">Tanggal Pemesanan</label>
+        <input type="date" id="i_tanggal_pesan" class="input-kategori">
+
+        <label class="label-info required">Estimasi Pesanan Selesai</label>
+        <input type="date" id="i_estimasi" class="input-kategori">
+
+        <button class="btn-kategori" id="btnAddKategori">Add Kategori</button>
+    </div>
+
+</div>
+
+</div>
+</div>
+
+<input type="file" id="upload_desain" multiple accept="image/*" style="display:none;">
+
+<div id="fullscreenPreviewWrapper">
+    <img id="fullscreenPreviewImg">
+</div>
+
+<!-- JS UTAMA -->
+<script type="module" src="assets/js/view_pesanan.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Pengaturan - C02Y Apparel</title>
+
+    <!-- CSS sama seperti sebelumnya (pindah path jika perlu) -->
+    <link rel="stylesheet" href="assets/css/pengaturan.css">
+
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Supabase client (module) - pastikan file ini ada dan export `supabase` -->
+    <script type="module" src="assets/js/supabase.js"></script>
+
+    <!-- Logic halaman pengaturan (module) -->
+    <script type="module" src="assets/js/update_profile.js"></script>
+    <script type="module" src="assets/js/change_password.js"></script>
+
+</head>
+<body>
+
+<!-- navbar disisipkan secara dinamis (kamu bilang navbar tetap) -->
+<div id="navbar"></div>
+<script type="module" src="assets/js/navbar.js"></script>
+
+<div class="container">
+
+    <div class="card">
+        <h3>Edit Profil</h3>
+
+        <!-- NOTE: submit ditangani JS (supabase) -->
+        <form id="formProfile" onsubmit="return false;" enctype="multipart/form-data">
+
+            <div class="avatar-wrapper">
+                <div class="avatar-preview">
+                    <img id="profile-img-preview" src="assets/img/profile-default.png" alt="Avatar">
+                </div>
+
+                <label class="upload-btn" id="btnUploadLabel">
+                    Unggah Foto
+                    <input type="file" id="profile_image_input" accept="image/*" style="display:none;">
+                </label>
+
+                <p class="note">Format disarankan: PNG, JPG — Max 5MB</p>
+            </div>
+
+            <label for="full_name">Nama</label>
+            <input type="text" id="full_name" name="full_name" placeholder="Masukkan nama lengkap">
+
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Masukkan username">
+
+            <div style="margin-top:12px;">
+                <button type="button" id="btnSaveProfile" class="btn-save">Simpan Perubahan</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="card">
+        <h3>Password</h3>
+
+        <form id="formPassword" onsubmit="return false;">
+            <label for="old_password">Password Lama</label>
+            <input type="password" id="old_password" name="old_password" placeholder="Masukkan password lama" required>
+
+            <label for="new_password">Password Baru</label>
+            <input type="password" id="new_password" name="new_password" placeholder="Masukkan password baru" required>
+            <small class="info">Minimal 8 karakter</small>
+
+            <label for="confirm_password">Konfirmasi Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Konfirmasi password baru" required>
+
+            <div style="margin-top:12px;">
+                <button type="button" id="btnChangePassword" class="btn-save">Ganti Password</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

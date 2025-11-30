@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<script type="module" src="assets/js/navbar.js"></script>
+<script type="module" src="assets/js/dashboard.js"></script>
+
+<div class="container">
+
+    <h2>Dashboard</h2>
+
+    <div class="stat-grid">
+
+        <div class="stat-card dark">
+            <div class="stat-header">
+                <span>Pesanan Masuk</span>
+                <span class="dots" onclick="window.location.href='pesanan.html'">•••</span>
+            </div>
+            <div class="stat-value" id="jumlahPesanan">0</div>
+            <div class="stat-footer">Jersey</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <span>Jumlah Pelanggan</span>
+                <span class="dots" onclick="window.location.href='pesanan.html'">•••</span>
+            </div>
+            <div class="stat-value" id="jumlahPelanggan">0</div>
+            <div class="stat-footer">Pelanggan</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <span>Total Pengeluaran</span>
+                <span class="dots" onclick="window.location.href='keuangan.html'">•••</span>
+            </div>
+            <div class="stat-value" id="totalKeluar">Rp0</div>
+            <div class="stat-footer">Juta</div>
+        </div>
+
+    </div>
+
+    <div class="grafik-box card">
+
+        <h3 class="grafik-title">
+            Grafik Keuangan 2025
+            <span class="dots grafik-dots" onclick="window.location.href='keuangan.html'">•••</span>
+        </h3>
+
+        <div class="grafik-info">
+            <div class="grafik-total" id="totalMasuk">Rp0
+                <span class="grafik-label"> Total Pemasukan </span>
+            </div>
+            <div class="grafik-status">
+                <span class="dot"></span> On track
+            </div>
+        </div>
+
+        <div class="grafik-area">
+            <canvas id="grafikDashboard"></canvas>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

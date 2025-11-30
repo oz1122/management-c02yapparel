@@ -1,0 +1,289 @@
+/* ===== Background Halaman ===== */
+body {
+    background: #f5f5f5;
+    font-family: Arial, sans-serif;
+}
+
+/* ===== Container Putih ===== */
+.content {
+    margin-left: 285px;
+    margin-top: 90px;
+    width: 1225px;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* ===== Header ===== */
+.header-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.header-box h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header-box p {
+    margin-top: 3px;
+    font-size: 13px;
+    color: #666;
+}
+
+/* ===== Tools (Search + Filter + Button) ===== */
+
+.tools {
+    display: flex;
+    gap: 10px;
+}
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 260px;       /* bebas, sesuaikan */
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 40px 10px 12px;   /* kanan diberi ruang 40px untuk icon */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 12px;        /* posisi icon */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;    /* biar tidak mengganggu klik input */
+    opacity: 0.7;           /* biar lebih halus */
+}
+
+
+.btn-filter,
+.btn-new {
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    border: 1px solid #999;
+    cursor: pointer;
+}
+
+.btn-new {
+    background: #D9F20C;
+    font-weight: bold;
+}
+
+/* ===== Table ===== */
+.table-container {
+    border-radius: 12px;
+    overflow: visible;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: rgba(0,0,0,0.8);
+    color: white;
+}
+
+th {
+    padding: 14px;
+    font-size: 14px;
+}
+
+td {
+    padding: 14px;
+    font-size: 14px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+td:last-child,
+th:last-child {
+    width: 60px;
+    text-align: center;
+}
+
+.nama-pelanggan {
+    text-align: left;
+}   
+
+/* Telepon kecil */
+.telepon {
+    font-size: 11px;
+    opacity: 0.6;
+    display: block;
+}
+
+/* ===== Badge Status ===== */
+.badge {
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+
+}
+
+.badge.dp {
+    background: #FFC107;
+    padding: 9px 47px;
+}
+
+.badge.lunas {
+    background: #89D89E;
+    padding: 9px 38px;
+}
+
+.badge.belumbayar {
+    background: #DC3545;
+    color: white;
+}
+
+.badge.belumlunas {
+    background: #007BFF;
+    color: white;
+}
+
+/* ===== Tombol titik 3 ===== */
+.btn-detail {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* ===== Dropdown Menu ===== */
+.aksi-wrapper {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    background: #ffffff;
+    border-radius: 12px;
+    width: 150px;
+    padding: 6px 0;
+    display: none;
+    flex-direction: column;
+
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+    z-index: 999;
+    animation: fadeScale 0.15s ease-out;
+}
+
+.dropdown-menu a {
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: black;
+    font-size: 14px;
+    border-left: 3px solid transparent;
+}
+
+.dropdown-menu a:hover {
+    background: #f5f5f5;
+    border-left: 3px solid #D9F20C;
+}
+
+.dropdown-menu i {
+    font-size: 18px;
+}
+
+@keyframes fadeScale {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== Pagination ===== */
+.pagination-box {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-info {
+    font-size: 14px;
+    color: #333;
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.page-btn {
+    padding: 8px 18px;
+    border-radius: 10px;
+    background: white;
+    border: 1px solid #444;
+    cursor: pointer;
+}
+
+.page-btn:hover {
+    background: #efefef;
+}
+
+
+/* ===== Popup Success (Center) ===== */
+.popup-success {
+    position: fixed;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%, -50%);
+
+    background: #4CAF50;
+    color: white;
+    padding: 18px 28px;
+    border-radius: 12px;
+
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    font-size: 16px;
+    font-weight: 600;
+
+    z-index: 99999;
+
+    animation: fadeInCenter 0.3s ease-out;
+    transition: opacity 0.5s ease;
+}
+
+/* Animasi masuk */
+@keyframes fadeInCenter {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* ===== Tabel ===== */
+/* ===== Zebra Stripes Gradient Soft ===== */
+tbody tr:nth-child(odd) {
+    background: linear-gradient(to right, #f7f7f7, #ffffff);
+}
+
+tbody tr:nth-child(even) {
+    background: linear-gradient(to right, #ffffff, #f8f8f8);
+}
+
+/* Hover baris biar lebih hidup */
+tbody tr:hover {
+    background: linear-gradient(to right, #ebebeb, #ffffff);
+    transition: 0.25s ease;
+}

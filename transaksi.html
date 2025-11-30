@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Transaksi C02Y Apparel</title>
+
+    <link rel="stylesheet" href="assets/css/transaksi.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Supabase client -->
+    <script type="module" src="assets/js/supabase.js"></script>
+    <!-- Main transaksi logic -->
+    <script type="module" src="assets/js/transaksi.js" defer></script>
+    <script type="module" src="assets/js/navbar.js"></script>
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<div class="content">
+
+    <!-- HEADER -->
+    <div class="header-box">
+        <div>
+            <h2>Daftar Transaksi</h2>
+            <p id="totalCount">Total 0 transaksi</p>
+        </div>
+
+        <div class="search-wrapper">
+            <input type="text" placeholder="Search nama pelanggan.."
+                   class="search-input" id="searchInput" autocomplete="off">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-container">
+        <table>
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Pelanggan</th>
+                <th>Total Harga</th>
+                <th>Total Pembayaran</th>
+                <th>Sisa Pembayaran</th>
+                <th>Aksi</th>
+            </tr>
+            </thead>
+
+            <tbody id="tableBody">
+                <!-- Diisi JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="pagination-box">
+        <div class="page-info" id="pageInfo">Page 1 of 1</div>
+        <div class="pagination-controls" id="paginationControls"></div>
+    </div>
+
+</div>
+
+</body>
+</html>
