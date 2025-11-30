@@ -65,7 +65,7 @@ async function loadNavbar() {
     const path = window.location.pathname;
 
     const menuMap = {
-        "/dashboard": "menu-dashboard",
+        "dashboard": "menu-dashboard",
         "/dashboard.html": "menu-dashboard",
 
         "/pesanan": "menu-pesanan",
@@ -103,3 +103,4 @@ async function loadNavbar() {
 }
 
 loadNavbar();
+
