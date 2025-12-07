@@ -10,7 +10,11 @@ btnLogin.addEventListener("click", async () => {
     const password = passInput.value.trim();
 
     if (!email || !password) {
-        alert("Email dan password wajib diisi!");
+        Swal.fire({
+            icon: "warning",
+            title: "Input Kosong",
+            text: "Email dan password wajib diisi!"
+        });
         return;
     }
 
@@ -20,10 +24,21 @@ btnLogin.addEventListener("click", async () => {
     });
 
     if (error) {
-        alert("Login gagal: " + error.message);
+        Swal.fire({
+            icon: "error",
+            title: "Login Gagal",
+            text: "Email atau password salah!"
+        });
         return;
     }
 
-    alert("Login Berhasil!");
-    window.location.href = "dashboard.html";
+    Swal.fire({
+        icon: "success",
+        title: "Berhasil Login",
+        text: "Selamat datang!",
+        timer: 1500,
+        showConfirmButton: false
+    }).then(() => {
+        window.location.href = "dashboard.html";
+    });
 });
