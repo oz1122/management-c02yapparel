@@ -159,7 +159,7 @@ function renderThumbnails(){
   });
 }
 function updatePreview(){
-  previewImg.src = daftarGambar[indexPreview]?.url || "/c02yapparel/asset/preview.png";
+  previewImg.src = daftarGambar[indexPreview]?.url || "assets/img/preview.png";
 }
 
 /* HARGA */
@@ -313,3 +313,4 @@ document.addEventListener("DOMContentLoaded", ()=>{
   i_jumlah?.addEventListener("change", ()=>{ renderDetailItems(parseInt(i_jumlah.value||1)); hitungHarga(); });
   if (btnCancel) btnCancel.addEventListener("click",(e)=>{ e.preventDefault(); window.location.href="pesanan.html"; });
 });
+
